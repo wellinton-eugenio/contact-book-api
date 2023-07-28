@@ -32,7 +32,7 @@ const createTokenService = async ({ email, password }: TLoginRequest) => {
         process.env.SECRET_KEY!,
         {
             expiresIn: "24h",
-            subject: String(user.id)
+            subject: user.id.toString()
         }
     )
     return token

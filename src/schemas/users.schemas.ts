@@ -5,7 +5,7 @@ const userSchema = z.object({
     name: z.string(),
     email: z.string().email(),
     password: z.string(),
-    cellPhone:z.string().nullish(),
+    cellphone:z.string().nullish(),
     createdAt: z.date(),
 })
 
@@ -18,6 +18,6 @@ const userSchemaResponse = userSchema.omit({
     password: true,
 })
 
-const userSchemaUpdateRequest = userSchemaRequest.partial()
+const userSchemaUpdateRequest = userSchema.omit({id:true, createdAt:true}).partial()
 
 export{userSchema, userSchemaRequest, userSchemaResponse, userSchemaUpdateRequest}

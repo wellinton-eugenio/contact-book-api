@@ -11,4 +11,4 @@ const ensureDataIsValid = (schema: ZodTypeAny) =>
     return next()
 }
 
-export { ensureDataIsValid }
+export default ensureDataIsValid

@@ -8,9 +8,9 @@ import { userSchemaResponse } from "../../schemas/users.schemas";
 
 
 const createUserService = async (data: TUserRequest): Promise<TUserResponse> => {
-    const { email, name, password } = data
-    const userRepository = AppDataSource.getRepository(User)
-    const findUser = await userRepository.findOne({
+    const { email, name, password, cellphone } = data
+    const userRepo = AppDataSource.getRepository(User)
+    const findUser = await userRepo.findOne({
         where: {
             email
         }
@@ -20,19 +20,14 @@ const createUserService = async (data: TUserRequest): Promise<TUserResponse> => 
         throw new AppError("user already exists", 409)
     }
 
-    const hashedPassword = await hash(password, 10)
-    const user = userRepository.create({
-        name,
-        email,
-        password: hashedPassword
-    })
+    data.password = await hash(data.password, 10)
 
-    await userRepository.save(user)
+    const user = userRepo.create(data)
 
-
+    await userRepo.save(user)
 
     return userSchemaResponse.parse(user)
 }
 
 
-export { createUserService }
+export default createUserService
