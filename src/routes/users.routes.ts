@@ -5,11 +5,11 @@ import { createUserController, retrieveUserController, updateUserController, del
 import ensureAccoutOwnerMiddleware from "../middlewares/ensureAccounOwner.middleware";
 import { userSchemaRequest, userSchemaUpdateRequest } from "../schemas/users.schemas";
 
-const userRoutes = Router()
+const userRoutes = Router();
 
-userRoutes.post("",ensureDataIsValid(userSchemaRequest), createUserController)
-userRoutes.get("/:id",ensureAuthMiddleware, ensureAccoutOwnerMiddleware, retrieveUserController)
-userRoutes.patch("/:id",ensureAuthMiddleware, ensureAccoutOwnerMiddleware, ensureDataIsValid(userSchemaUpdateRequest), updateUserController)
-userRoutes.delete("/:id",ensureAuthMiddleware, ensureAccoutOwnerMiddleware, deleteUserController)
+userRoutes.post("",ensureDataIsValid(userSchemaRequest), createUserController);
+userRoutes.get("/:id",ensureAuthMiddleware, ensureAccoutOwnerMiddleware, retrieveUserController);
+userRoutes.patch("/:id",ensureAuthMiddleware, ensureAccoutOwnerMiddleware, ensureDataIsValid(userSchemaUpdateRequest), updateUserController);
+userRoutes.delete("/:id",ensureAuthMiddleware, ensureAccoutOwnerMiddleware, deleteUserController);
 
-export { userRoutes }
+export { userRoutes };

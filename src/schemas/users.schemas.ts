@@ -1,4 +1,4 @@
-import {z} from "zod"
+import {z} from "zod";
 
 const userSchema = z.object({
     id: z.number(),
@@ -7,17 +7,17 @@ const userSchema = z.object({
     password: z.string(),
     cellphone:z.string().nullish(),
     createdAt: z.date(),
-})
+});
 
 const userSchemaRequest = userSchema.omit({
     createdAt: true,
     id: true,
-})
+});
 
 const userSchemaResponse = userSchema.omit({
     password: true,
-})
+});
 
-const userSchemaUpdateRequest = userSchema.omit({id:true, createdAt:true}).partial()
+const userSchemaUpdateRequest = userSchema.omit({id:true, createdAt:true}).partial();
 
-export{userSchema, userSchemaRequest, userSchemaResponse, userSchemaUpdateRequest}
+export{userSchema, userSchemaRequest, userSchemaResponse, userSchemaUpdateRequest};

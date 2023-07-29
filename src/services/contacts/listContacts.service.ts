@@ -8,11 +8,11 @@ import { contactsSchemaResponse } from "../../schemas/contacts.schemas";
 const listContactsService = async (userId: number): Promise<TContactsResponse> =>{
     const userRepository = AppDataSource.getRepository(User);
 
-    const user = await userRepository.findOne({where:{id: userId},relations:{contacts:true}})
+    const user = await userRepository.findOne({where:{id: userId},relations:{contacts:true}});
 
-    if (!user) { throw new AppError("user not found", 404)}
+    if (!user) { throw new AppError("user not found", 404)};
 
-    return contactsSchemaResponse.parse(user.contacts)
+    return contactsSchemaResponse.parse(user.contacts);
 }
 
-export default listContactsService
+export default listContactsService;

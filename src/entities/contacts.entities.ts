@@ -20,6 +20,6 @@ class Contact{
 
     @ManyToOne(() => User)
     user: User
-}
+};
 
-export {Contact}
+export {Contact};

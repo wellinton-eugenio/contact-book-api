@@ -7,20 +7,19 @@ const handleAppError = (error: Error, req: Request, res: Response, _: NextFuncti
     if (error instanceof AppError) {
         return res.status(error.statusCode).json({
             message: error.message
-        })
-    }
+        });
+    };
 
     if (error instanceof ZodError) {
         return res.status(400).json({
             message: error.flatten().fieldErrors
-        })
-    }
+        });
+    };
 
     return res.status(500).json({
         message: "internal server error"
-    })
+    });
 
+};
 
-}
-
-export { handleAppError }
+export { handleAppError };

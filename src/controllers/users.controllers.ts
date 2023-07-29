@@ -7,33 +7,34 @@ import deleteUserService from "../services/users/deleteUser.service";
 
 const createUserController = async (req: Request, res: Response) => {
 
-    const newUser = await createUserService(req.body)
+    const newUser = await createUserService(req.body);
 
-    return res.status(201).json(newUser)
-}
+    return res.status(201).json(newUser);
+};
 
 const retrieveUserController = async (req: Request, res: Response) => {
-    const userId:number = parseInt(req.params.id)
+    const userId:number = parseInt(req.params.id);
 
-    const dataUser = await retrieveUserService(userId)
+    const dataUser = await retrieveUserService(userId);
 
-    return res.status(200).json(dataUser)
-}
+    return res.status(200).json(dataUser);
+};
 
 const updateUserController = async (req: Request, res: Response) => {
-    const data = req.body
-    const userId:number = parseInt(req.params.id)
+    const data = req.body;
+    const userId:number = parseInt(req.params.id);
 
-    const updateUser = await updadeUserService(data, userId)
+    const updateUser = await updadeUserService(data, userId);
 
-    return res.status(200).json(updateUser)
-}
+    return res.status(200).json(updateUser);
+};
 
 const deleteUserController = async (req: Request, res: Response) => {
-    const userId:number = parseInt(req.params.id)
+    const userId:number = parseInt(req.params.id);
 
-    await deleteUserService(userId)
+    await deleteUserService(userId);
     
-    return res.status(204).send()
-}
-export { createUserController, retrieveUserController, deleteUserController, updateUserController }
+    return res.status(204).send();
+};
+
+export { createUserController, retrieveUserController, deleteUserController, updateUserController };

@@ -2,13 +2,12 @@ import { NextFunction, Request, Response } from "express";
 import { ZodTypeAny } from "zod";
 
 
-const ensureDataIsValid = (schema: ZodTypeAny) => 
-    (req: Request, res: Response, next: NextFunction) => {
-    const validateDAta = schema.parse(req.body)
+const ensureDataIsValid = (schema: ZodTypeAny) => (req: Request, res: Response, next: NextFunction) => {
+    const validateDAta = schema.parse(req.body);
 
-    req.body = validateDAta
+    req.body = validateDAta;
 
-    return next()
-}
+    return next();
+};
 
-export default ensureDataIsValid
+export default ensureDataIsValid;
