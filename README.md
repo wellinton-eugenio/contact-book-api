@@ -19,8 +19,12 @@ Instale o projeto com npm
 ```bash
   git clone "diretorio do github"
   cd contact-book-api
+  code .
+  crie um arquivo .env com as configuracoes do .env.exemple
+  crie um banco de dados para testar a aplicacao
   npm install
-  npm run dev  
+  npm run typeorm migration:run -- -d ./src/datasource
+  npm run dev
 ```
     
 ## Documentação da API
