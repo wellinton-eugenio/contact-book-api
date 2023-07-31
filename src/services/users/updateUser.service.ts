@@ -4,6 +4,7 @@ import { AppDataSource } from "../../data-source";
 import { TUserUpdadeRequest, TUserResponse } from "../../interfaces/user.interfaces";
 import { AppError } from "../../errors/AppError";
 import { userSchemaResponse } from "../../schemas/users.schemas";
+import { hash } from "bcryptjs";
 
 const updadeUserService = async(data:TUserUpdadeRequest, userId:number): Promise<TUserResponse> => {
     const userRepo: Repository<User> = AppDataSource.getRepository(User);
@@ -12,6 +13,13 @@ const updadeUserService = async(data:TUserUpdadeRequest, userId:number): Promise
     if(!oldData){
         throw new AppError("User not found", 404)
     };
+
+    if (data.password){
+        const hashedPassword = await hash(data.password, 10)
+        data.password = hashedPassword
+    } else {
+        data.password = oldData.password
+    }
 
     const newData = userRepo.create({
         ...oldData,
